@@ -1,6 +1,6 @@
 # SilverSpoon
 
-Entitlements in Redis. A simple wrapper around Redis hashes for adding, removing, retrieving and 
+Entitlements in Redis. A simple semantic wrapper around Redis hashes for adding, removing, retrieving and 
 checking existence of entitlements.
 
 ## Installation
