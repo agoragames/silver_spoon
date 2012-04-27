@@ -61,6 +61,13 @@ has_entitlement?(id, entitlement_key, scope = SilverSpoon.default_scope)
 has_entitlements?(id, entitlement_keys, scope = SilverSpoon.default_scope)
 ```
 
+Retrieving entitlements:
+
+```ruby
+retrieve_entitlement(id, entitlement_key, scope = SilverSpoon.default_scope)
+retrieve_entitlements(id, entitlement_keys, scope = SilverSpoon.default_scope)
+```
+
 ## Contributing
 
 1. Fork it

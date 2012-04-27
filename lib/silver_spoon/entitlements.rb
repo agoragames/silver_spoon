@@ -20,6 +20,14 @@ module SilverSpoon
       end
     end
 
+    def retrieve_entitlement(id, entitlement_key, scope = SilverSpoon.default_scope)
+      retrieve_entitlements(id, [entitlement_key], scope)
+    end
+
+    def retrieve_entitlements(id, entitlement_keys, scope = SilverSpoon.default_scope)
+      Hash[*entitlement_keys.zip(SilverSpoon.redis.hmget(silver_spoon_key(id, SilverSpoon.namespace, scope), *entitlement_keys)).flatten!]
+    end
+
     def has_entitlement?(id, entitlement_key, scope = SilverSpoon.default_scope)
       SilverSpoon.redis.hexists(silver_spoon_key(id, SilverSpoon.namespace, scope), entitlement_key)
     end

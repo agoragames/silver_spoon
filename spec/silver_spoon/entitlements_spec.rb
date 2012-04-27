@@ -71,6 +71,46 @@ describe SilverSpoon::Entitlements do
     end
   end
 
+  describe '#retrieve_entitlement' do
+    it 'should retrieve an entitlement' do
+      SilverSpoon.add_entitlement('david', 'an_entitlement', 'an_entitlement_value')
+      SilverSpoon.has_entitlement?('david', 'an_entitlement').should be_true
+      SilverSpoon.retrieve_entitlement('david', 'an_entitlement').should == {'an_entitlement' => 'an_entitlement_value'}
+    end
+
+    it 'should retrieve an entitlement for a given scope' do
+      SilverSpoon.add_entitlement('david', 'an_entitlement', 'an_entitlement_value')
+      SilverSpoon.add_entitlement('david', 'an_entitlement', 'another_entitlement_value', 'another_scope')
+      SilverSpoon.has_entitlement?('david', 'an_entitlement').should be_true
+      SilverSpoon.retrieve_entitlement('david', 'an_entitlement', 'another_scope').should == {'an_entitlement' => 'another_entitlement_value'}
+    end
+  end
+
+  describe '#retrieve_entitlements' do
+    it 'should retrieve multiple entitlements' do
+      SilverSpoon.add_entitlement('david', 'an_entitlement', 'an_entitlement_value')
+      SilverSpoon.add_entitlement('david', 'another_entitlement', 'another_entitlement_value')
+      SilverSpoon.retrieve_entitlements('david', ['an_entitlement', 'another_entitlement']).should == 
+        {
+          'an_entitlement' => 'an_entitlement_value', 
+          'another_entitlement' => 'another_entitlement_value'
+        }
+    end
+
+    it 'should retrieve multiple entitlements for a given scope' do
+      SilverSpoon.add_entitlement('david', 'an_entitlement', 'an_entitlement_value')
+      SilverSpoon.add_entitlement('david', 'another_entitlement', 'another_entitlement_value')
+      SilverSpoon.add_entitlement('david', 'an_entitlement2', 'an_entitlement_value', 'another_scope')
+      SilverSpoon.add_entitlement('david', 'another_entitlement2', 'another_entitlement_value', 'another_scope')
+      SilverSpoon.retrieve_entitlements('david', ['an_entitlement2', 'another_entitlement2', 'unknown_entitlement'], 'another_scope').should == 
+        {
+          'an_entitlement2' => 'an_entitlement_value', 
+          'another_entitlement2' => 'another_entitlement_value',
+          'unknown_entitlement' => nil
+        }
+    end
+  end
+
   describe '#has_entitlements?' do
     it 'should allow you to check for multiple entitlements at once' do
       SilverSpoon.has_entitlements?('david', ['an_entitlement', 'another_entitlement']).should == [false, false]
