@@ -69,6 +69,31 @@ retrieve_entitlement(id, entitlement_key, scope = SilverSpoon.default_scope)
 retrieve_entitlements(id, entitlement_keys, scope = SilverSpoon.default_scope)
 ```
 
+Complete example:
+
+```ruby
+require 'silver_spoon'
+ => true 
+SilverSpoon.configure do |configuration|
+  configuration.redis = Redis.new
+  configuration.namespace = 'silver_spoon'
+  configuration.default_scope = 'entitlements'
+end
+ => "entitlements" 
+SilverSpoon.has_entitlement?('david', 'an_entitlement')
+ => false 
+SilverSpoon.add_entitlement('david', 'an_entitlement', 'an_entitlement_value')
+ => "OK" 
+SilverSpoon.add_entitlement('david', 'another_entitlement', 'another_entitlement_value')
+ => "OK" 
+SilverSpoon.has_entitlements?('david', ['an_entitlement', 'another_entitlement'])
+ => [true, true] 
+SilverSpoon.has_entitlement?('david', 'unknown_entitlement')
+ => false 
+SilverSpoon.retrieve_entitlements('david', ['an_entitlement', 'another_entitlement'])
+ => {"an_entitlement"=>"an_entitlement_value", "another_entitlement"=>"another_entitlement_value"} 
+```
+
 ## Contributing
 
 1. Fork it
