@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["David Czarnecki"]
   gem.email         = ["me@davidczarnecki.com"]
   gem.description   = %q{Entitlements in Redis}
-  gem.summary       = %q{Entitlements in Redis}
+  gem.summary       = %q{Entitlements in Redis. A simple wrapper around Redis hashes for adding, removing, and checking existence of entitlements.}
   gem.homepage      = "https://github.com/czarneckid/silver_spoon"
 
   gem.files         = `git ls-files`.split($\)
