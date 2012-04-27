@@ -1,5 +1,7 @@
-require "silver_spoon/version"
+require 'redis'
+require 'silver_spoon/configuration'
+require 'silver_spoon/version'
 
 module SilverSpoon
-  # Your code goes here...
+  extend Configuration
 end
