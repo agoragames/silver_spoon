@@ -41,6 +41,10 @@ The hash key used in looking up entitlements for a given `id` is as follows:
 "#{SilverSpoon.namespace}:#{scope}:#{id}"
 ```
 
+You can use the `scope` property in the various calls to retrieve entitlement data 
+in another context. This may be useful if you want to allow, for example, entitlements 
+for multiple games or different membership products.
+
 Adding entitlements:
 
 ```ruby
