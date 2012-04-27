@@ -24,7 +24,42 @@ $ gem install silver_spoon
 
 ## Usage
 
-TODO: Write usage instructions here
+Configuration:
+
+```ruby
+SilverSpoon.configure do |configuration|
+  configuration.redis = Redis.new
+  configuration.namespace = 'silver_spoon'
+  configuration.default_scope = 'entitlements'
+end
+```
+
+The hash key used in looking up entitlements for a given `id` is as follows:
+
+```ruby
+"#{SilverSpoon.namespace}:#{scope}:#{id}"
+```
+
+Adding entitlements:
+
+```ruby
+add_entitlement(id, entitlement_key, entitlement_value, scope = SilverSpoon.default_scope)
+add_entitlements(id, entitlement_keys, entitlement_values, scope = SilverSpoon.default_scope)
+```
+
+Removing entitlements:
+
+```ruby
+remove_entitlement(id, entitlement_key, scope = SilverSpoon.default_scope)
+remove_entitlements(id, entitlement_keys, scope = SilverSpoon.default_scope)
+```
+
+Checking entitlements:
+
+```ruby
+has_entitlement?(id, entitlement_key, scope = SilverSpoon.default_scope)
+has_entitlements?(id, entitlement_keys, scope = SilverSpoon.default_scope)
+```
 
 ## Contributing
 
