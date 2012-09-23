@@ -37,10 +37,10 @@ module SilverSpoon
         entitlement_keys.each do |entitlement_key|
           transaction.hexists(silver_spoon_key(id, SilverSpoon.namespace, scope), entitlement_key)
         end
-      end.map { |value| value == 0 ? false : true }
+      end
     end
 
-    private 
+    private
 
     def silver_spoon_key(id, namespace, scope)
       "#{namespace}:#{scope}:#{id}"
