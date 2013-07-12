@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Entitlements in Redis}
   gem.summary       = %q{Entitlements in Redis. A simple wrapper around Redis hashes for adding, removing, and checking existence of entitlements.}
   gem.homepage      = "https://github.com/agoragames/silver_spoon"
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
