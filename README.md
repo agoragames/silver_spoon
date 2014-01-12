@@ -1,6 +1,6 @@
 # SilverSpoon
 
-Entitlements in Redis. A simple semantic wrapper around Redis hashes for adding, removing, retrieving and 
+Entitlements in Redis. A simple semantic wrapper around Redis hashes for adding, removing, retrieving and
 checking existence of entitlements.
 
 ## Installation
@@ -41,8 +41,8 @@ The hash key used in looking up entitlements for a given `id` is as follows:
 "#{SilverSpoon.namespace}:#{scope}:#{id}"
 ```
 
-You can use the `scope` property in the various calls to retrieve entitlement data 
-in another context. This may be useful if you want to allow, for example, entitlements 
+You can use the `scope` property in the various calls to retrieve entitlement data
+in another context. This may be useful if you want to allow, for example, entitlements
 for multiple games or different membership products.
 
 Adding entitlements:
@@ -77,25 +77,25 @@ Complete example:
 
 ```ruby
 require 'silver_spoon'
- => true 
+ => true
 SilverSpoon.configure do |configuration|
   configuration.redis = Redis.new
   configuration.namespace = 'silver_spoon'
   configuration.default_scope = 'entitlements'
 end
- => "entitlements" 
+ => "entitlements"
 SilverSpoon.has_entitlement?('david', 'an_entitlement')
- => false 
+ => false
 SilverSpoon.add_entitlement('david', 'an_entitlement', 'an_entitlement_value')
- => "OK" 
+ => "OK"
 SilverSpoon.add_entitlement('david', 'another_entitlement', 'another_entitlement_value')
- => "OK" 
+ => "OK"
 SilverSpoon.has_entitlements?('david', ['an_entitlement', 'another_entitlement'])
- => [true, true] 
+ => [true, true]
 SilverSpoon.has_entitlement?('david', 'unknown_entitlement')
- => false 
+ => false
 SilverSpoon.retrieve_entitlements('david', ['an_entitlement', 'another_entitlement'])
- => {"an_entitlement"=>"an_entitlement_value", "another_entitlement"=>"another_entitlement_value"} 
+ => {"an_entitlement"=>"an_entitlement_value", "another_entitlement"=>"another_entitlement_value"}
 ```
 
 ## Contributing
@@ -108,4 +108,4 @@ SilverSpoon.retrieve_entitlements('david', ['an_entitlement', 'another_entitleme
 
 ## Copyright
 
-Copyright (c) 2012-2013 David Czarnecki. See LICENSE for further details.
+Copyright (c) 2012-2014 David Czarnecki. See LICENSE for further details.
